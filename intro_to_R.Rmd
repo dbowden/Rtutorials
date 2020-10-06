@@ -1,0 +1,118 @@
+---
+title: "R Tutorial"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Introduction
+
+### R
+
+R is a programming language for managing data, making graphs, and performing statistical analyses. Don't worry! It isn't as hard as it sounds, and you won't be tested on this on the midterm. This tutorial is meant to give you a feel for what it would be like to use quantitative methods in your thesis, and to provide illustrations for some of the concepts from the lectures.
+
+### The Data
+
+We will use the sample example for the remainder of our quantitative unit. Many scholars assert that democracies tend to have stronger economic growth than non-democracies. We will test this proposition using data on regime scores from the [Polity Project](https://www.systemicpeace.org/inscrdata.html) and economic data from the [World Bank](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD).
+
+### Basic Math 
+
+R requires that you type commands into a console rather than clicking a button. One type of command is simple math. You can use R just like a calculator. Try typing `1+2` into the 'Code' box below and then hit the 'Run Code' button.
+
+```{r two-plus-two, exercise=TRUE, exercise.lines = 1}
+
+```
+
+A new box should appear with the answer. There are many other operations available including multiplication (`*`), division (`/`) and exponents (`^`). Try a few math problems before moving on.
+
+## Functions
+
+Thankfully, we rarely need to type out the math by hand. Instead, we can rely mostly on built-in commands called functions. A function is a word followed by parentheses that contain options such as the dataset to be used with the function. One of the simplest functions is called `print`. It does exactly what you would expect - it prints the message you supply as an option in the parentheses. Hit 'Run Code' to see for yourself.
+
+```{r hello, exercise=TRUE, exercise.lines = 1}
+print("Hello world!")
+```
+
+Note that in R all text (except the words `TRUE` and `FALSE` and their abbreviations `T` and `F`) must be surrounded by quotation marks. You can use double or single quotation marks, but each open quotation mark MUST be followed by a close quotation. Let's see what happens if we fail to do that:
+
+```{r hello-error, exercise=TRUE, exercise.lines = 1}
+print("Hello world!)
+```
+
+You should see a confusing error message. See if you can fix the command so that it works properly.
+
+Also note that R commands are case-sensitive. See what happens if we capitalize the "P" in `print`:
+
+```{r hello-case, exercise=TRUE, exercise.lines = 1}
+Print("Hello world!")
+```
+
+R's perfectionist tendencies like these are some of the most common sources of struggle for new users. Don't be afraid to ask for help! Even experienced users sometimes struggle to catch typos.
+
+## Loading Data
+
+Let's move onto a more useful function. The data mentioned at the beginning is stored in a .csv file (short for comma-separated values, a type of spreadsheet file). We can open in R using the `read.csv` command with the filename as the option. On its own, `read.csv` will simply print the contents of the file in the results window. To save the data for use with other commands, we need to give it a name. We can use any name we want so long as it begins with a letter, and we can use `=` or `<-` to store the data under said name. The `head` command will show us the first few rows of data. Click 'Run Code' below.
+
+```{r readcsv, exercise=TRUE, exercise.lines = 5}
+# data = read.csv("regressionlab.csv")
+# head(data)
+getwd()
+list.files()
+```
+
+### Exercise with Code
+
+*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+
+Now write a function that adds any two numbers and then call it:
+
+```{r add-function, exercise=TRUE, exercise.lines = 5}
+add <- function() {
+  
+}
+```
+
+## Topic 2
+
+### Exercise with Hint
+
+*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
+
+Modify the following code to limit the number of rows printed to 5:
+
+```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
+mtcars
+```
+
+```{r print-limit-hint}
+head(mtcars)
+```
+
+### Quiz
+
+*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
+
+Some questions to verify that you understand the purposes of various base and recommended R packages:
+
+```{r quiz}
+quiz(
+  question("Which package contains functions for installing other R packages?",
+    answer("base"),
+    answer("tools"),
+    answer("utils", correct = TRUE),
+    answer("codetools")
+  ),
+  question("Which of the R packages listed below are used to create plots?",
+    answer("lattice", correct = TRUE),
+    answer("tools"),
+    answer("stats"),
+    answer("grid", correct = TRUE)
+  )
+)
+```
+
